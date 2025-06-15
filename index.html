@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Pelajar SMA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    /* Reset dasar dan pengaturan global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      /* Warna dasar gelap yang dalam (biru gelap) */
+      background: #0f1c2e;
+      color: #e0e0e0; /* Warna teks terang untuk kontras */
+      line-height: 1.7; /* Menambah sedikit jarak baris */
+      position: relative; /* Diperlukan untuk pseudo-element background */
+      overflow-x: hidden; /* Mencegah scroll horizontal */
+    }
+
+    /* Latar belakang galaksi modern dan elegan (tetap gelap) */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      /* Efek kabut/nebula gelap di sekitar pusat */
+      box-shadow: 0 0 1500px 1000px rgba(0,0,0,0.5),
+                  0 0 800px 600px rgba(0,0,0,0.4),
+                  0 0 500px 300px rgba(0,0,0,0.3);
+      animation: galaxy-breathe 20s infinite alternate ease-in-out; /* Animasi berdenyut halus */
+      z-index: -2;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        /* Membuat bintang-bintang menggunakan multiple box-shadow */
+        box-shadow:
+            20px 20px #fff, 40px 50px #eee, 60px 80px #ddd, 80px 110px #ccc, 100px 140px #bbb,
+            120px 170px #aaa, 140px 200px #999, 160px 230px #888, 180px 260px #777, 200px 290px #666,
+            220px 320px #555, 240px 350px #444, 260px 380px #333, 280px 410px #222, 300px 440px #111,
+            320px 10px #fff, 340px 40px #eee, 360px 70px #ddd, 380px 100px #ccc, 400px 130px #bbb,
+            420px 160px #aaa, 440px 190px #999, 460px 220px #888, 480px 250px #777, 500px 280px #666,
+            520px 310px #555, 540px 340px #444, 560px 370px #333, 580px 400px #222, 600px 430px #111,
+            620px 50px #fff, 640px 80px #eee, 660px 110px #ddd, 680px 140px #ccc, 700px 170px #bbb,
+            720px 200px #aaa, 740px 230px #999, 760px 260px #888, 780px 290px #777, 800px 320px #666,
+            820px 350px #555, 840px 380px #444, 860px 410px #333, 880px 440px #222, 900px 470px #111,
+            920px 100px #fff, 940px 130px #eee, 960px 160px #ddd, 980px 190px #ccc, 1000px 220px #bbb,
+            1020px 250px #aaa, 1040px 280px #999, 1060px 310px #888, 1080px 340px #777, 1100px 370px #666,
+            1120px 400px #555, 1140px 430px #444, 1160px 460px #333, 1180px 490px #222, 1200px 520px #111,
+            1220px 150px #fff, 1240px 180px #eee, 1260px 210px #ddd, 1280px 240px #ccc, 1300px 270px #bbb,
+            1320px 300px #aaa, 1340px 330px #999, 1360px 360px #888, 1380px 390px #777, 1400px 420px #666,
+            1420px 450px #555, 1440px 480px #444, 1460px 510px #333, 1480px 540px #222, 1500px 570px #111;
+        animation: twinkle 8s infinite alternate; /* Animasi kerlap-kerlip yang lebih panjang */
+        z-index: -1;
+    }
+
+    body::before,
+    body::after {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    html, body {
+      overflow-x: hidden;
+    }
+
+
+    @keyframes galaxy-breathe {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(30, 42, 60, 0.98); /* Latar belakang header semi-transparan biru gelap */
+      display: flex;
+      justify-content: space-between; /* Logo di kiri, menu di kanan */
+      align-items: center;
+      padding: 1.5rem 3rem; /* Padding yang lebih besar */
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5); /* Bayangan lebih jelas dan dalam */
+      z-index: 1000;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      backdrop-filter: blur(5px); /* Efek blur pada header */
+    }
+
+    header .logo {
+      font-size: 1.8rem; /* Ukuran font logo yang lebih besar */
+      font-weight: 700;
+      color: #00aaff; /* Warna biru cerah sebagai aksen */
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px; /* Jarak antara ikon dan teks */
+    }
+
+    header .logo i {
+        font-size: 2rem; /* Ukuran ikon di logo */
+        color: #00bfff; /* Warna ikon yang berbeda untuk kontras */
+    }
+
+    /* Navigasi */
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem; /* Jarak antar link yang lebih besar */
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #a7a9be; /* Warna teks link yang lebih terang */
+      font-weight: 600;
+      font-size: 1.05rem; /* Ukuran font link sedikit lebih besar */
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      padding: 5px 0; /* Padding vertikal untuk area hover */
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      color: #00aaff; /* Warna aksen biru saat hover/active */
+    }
+
+    /* Efek underline saat hover */
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px; /* Garis bawah lebih tebal */
+      display: block;
+      margin-top: 5px;
+      left: 50%; /* Mulai dari tengah */
+      transform: translateX(-50%);
+      background: linear-gradient(to right, #00aaff, #00bfff); /* Gradien untuk underline */
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav ul li a:hover::after, nav ul li a.active::after {
+      width: 100%; /* Lebar penuh saat hover/active */
+    }
+
+    /* Bagian Konten Umum */
+    section {
+      padding: 80px 40px; /* Padding yang lebih besar dan konsisten */
+      max-width: 1000px;
+      margin: 60px auto; /* Margin atas dan bawah yang lebih besar */
+      background: #1e2a3c; /* Latar belakang bagian yang sedikit lebih terang dari body */
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6); /* Bayangan lebih jelas dan dalam */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    section:hover {
+        transform: translateY(-5px); /* Efek naik sedikit saat hover pada bagian */
+    }
+
+    .heading {
+      font-size: 3rem; /* Ukuran judul yang lebih besar */
+      color: #fffffe; /* Warna judul terang */
+      text-align: center;
+      margin-bottom: 50px; /* Jarak bawah judul */
+      position: relative;
+      padding-bottom: 15px; /* Ruang untuk underline */
+      font-weight: 700;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* Sedikit bayangan pada teks judul */
+    }
+
+    .heading span {
+        color: #00aaff; /* Warna aksen untuk bagian 'span' */
+    }
+
+    .heading i {
+        margin-right: 15px; /* Jarak antara ikon dan teks judul */
+        color: #00bfff; /* Warna ikon judul */
+    }
+
+    .heading::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 100px; /* Garis bawah judul lebih lebar */
+      height: 5px; /* Garis bawah lebih tebal */
+      background: linear-gradient(to right, #00aaff, #00bfff); /* Gradien untuk garis bawah */
+      border-radius: 3px;
+    }
+
+    /* Bagian Home (Hero Section) */
+    .home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 90vh; /* Tinggi minimal yang lebih besar */
+      text-align: center;
+      background: linear-gradient(135deg, #2a3d53 0%, #0f1c2e 100%); /* Gradien latar belakang yang cocok dengan tema gelap biru */
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7); /* Bayangan lebih besar dan dalam */
+      margin-top: 30px; /* Sedikit lebih tinggi dari margin section lainnya */
+    }
+
+    .home img {
+      width: 200px; /* Ukuran gambar profil yang lebih besar */
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      border: 8px solid #00aaff; /* Border aksen biru yang lebih tebal */
+      box-shadow: 0 0 0 12px rgba(0, 170, 255, 0.2), /* Efek lingkaran luar aksen biru */
+                  0 0 25px rgba(0, 170, 255, 0.5); /* Glow di sekitar gambar */
+      object-fit: cover;
+      object-position: top; /* Penyesuaian untuk menampilkan bagian atas wajah */
+    }
+
+    .home .content h2 {
+      font-size: 4.2rem; /* Ukuran font yang sangat besar untuk nama */
+      color: #fffffe;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    }
+    .home .content h2 span {
+        color: #00aaff; /* Warna aksen biru untuk nama */
+    }
+
+    .home .content p {
+      font-size: 1.4rem; /* Ukuran teks deskripsi yang lebih besar */
+      color: #a7a9be;
+      max-width: 700px;
+      margin: 0 auto 30px auto; /* Jarak bawah lebih besar */
+      font-weight: 300;
+    }
+
+    .btn {
+      background: linear-gradient(to right, #00aaff, #00bfff); /* Gradien aksen biru */
+      color: white;
+      padding: 1rem 2.5rem; /* Padding tombol yang lebih besar */
+      border: none;
+      border-radius: 50px; /* Bentuk pil */
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4); /* Bayangan tombol yang lebih menonjol */
+      display: inline-flex; /* Untuk menata ikon di samping teks */
+      align-items: center;
+      gap: 10px; /* Jarak antara teks dan ikon */
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.02); /* Efek naik dan sedikit membesar saat hover */
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    }
+
+    .btn i {
+        font-size: 1.2rem;
+    }
+
+    /* Bagian About */
+    .about p {
+        font-size: 1.15rem;
+        color: #a7a9be;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Bagian Skills - Modern dengan Progress Bar */
+    .skills ul {
+      list-style: none;
+      padding: 0;
+      display: grid; /* Menggunakan Grid untuk layout responsif */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Kolom otomatis, min 300px */
+      gap: 30px; /* Jarak antar item skill */
+      justify-content: center; /* Pusatkan item skill di grid */
+    }
+
+    .skills li {
+      background: #2a3d53; /* Latar belakang item skill yang lebih gelap */
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Teks rata kiri */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skills li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    }
+
+    .skills li .skill-name {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #fffffe;
+      margin-bottom: 15px;
+    }
+
+    .skills li .progress-bar-container {
+      width: 100%;
+      background: #4a5568; /* Latar belakang bar progres */
+      border-radius: 10px;
+      height: 12px; /* Tinggi bar progres lebih besar */
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .skills li .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, #00aaff, #00bfff); /* Gradien aksen biru */
+      border-radius: 10px;
+      width: var(--progress-width, 0%); /* Variabel CSS untuk lebar */
+      transition: width 1s ease-out; /* Animasi fill */
+    }
+
+    .skills li .skill-percentage {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #00aaff;
+      margin-top: 15px;
+      align-self: flex-end; /* Posisikan persentase di kanan bawah */
+    }
+
+    /* Bagian Education & Certificates (Shared Box Styling) */
+    .education .box, .work .box {
+        background: #2a3d53;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        margin-bottom: 20px; /* Jarak antar box */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .education .box:hover, .work .box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    }
+
+    .education .box h3, .work .box h3 {
+        font-size: 1.6rem;
+        color: #fffffe;
+        margin-bottom: 8px;
+    }
+    .education .box h3 i, .work .box h3 i {
+        margin-right: 10px;
+        color: #00bfff;
+    }
+
+    .education .box p, .work .box p {
+        font-size: 1.05rem;
+        color: #a7a9be;
+        margin-bottom: 5px;
+    }
+
+    .education .box small, .work .box small {
+        font-size: 0.9rem;
+        color: #888;
+        display: block;
+        margin-top: 10px;
+    }
+
+    /* Untuk layout grid di Education & Certificates */
+    .education .box-container, .work .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    /* Bagian Certificate Gambar */
+    .certificates .certificate-image { /* Kelas baru untuk gambar sertifikat */
+      width: 100%; /* Pastikan mengambil lebar penuh yang tersedia */
+      max-width: 600px; /* Batasi lebar maksimal untuk layar besar */
+      height: auto; /* Pertahankan rasio aspek */
+      display: block;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+    .certificates .certificate-image:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Gaya untuk embed PDF (desktop) */
+    .pdf-viewer {
+        width: 100%;
+        max-width: 600px; /* Konsisten dengan lebar gambar */
+        height: 50vh; /* Tinggi responsif */
+        min-height: 300px; /* Tinggi minimum untuk keterbacaan */
+        display: block; /* Default visible on desktop */
+        margin: 20px auto;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    /* Gaya untuk tautan PDF (mobile) */
+    .pdf-link-mobile {
+        display: none; /* Hidden by default on desktop */
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .pdf-link-mobile a {
+        background: linear-gradient(to right, #00aaff, #00bfff);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .pdf-link-mobile a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    }
+
+
+    /* Bagian Contact */
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Jarak antar elemen form */
+      margin-bottom: 30px; /* Jarak antara form dan social media */
+    }
+
+    .contact input, .contact textarea {
+      padding: 15px 20px; /* Padding yang lebih besar */
+      border-radius: 10px;
+      border: 1px solid #3a4a5c; /* Border yang cocok dengan tema gelap */
+      background-color: #2a3d53; /* Latar belakang input yang lebih gelap */
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      color: #e0e0e0; /* Warna teks input terang */
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .contact input::placeholder, .contact textarea::placeholder {
+        color: #b0b8c8; /* Warna placeholder */
+        opacity: 0.8;
+    }
+
+    .contact input:focus, .contact textarea:focus {
+      outline: none;
+      border-color: #00aaff; /* Border aksen biru saat fokus */
+      box-shadow: 0 0 0 4px rgba(0, 170, 255, 0.3); /* Bayangan fokus lebih menonjol */
+    }
+
+    .contact textarea {
+      resize: vertical;
+      min-height: 150px; /* Tinggi minimal textarea lebih besar */
+    }
+
+    .contact button {
+      background: linear-gradient(to right, #00aaff, #007bff); /* Gradien aksen biru untuk tombol */
+      color: white;
+      padding: 15px 30px; /* Padding tombol yang lebih besar */
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.15rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+
+    .contact button:hover {
+      background: linear-gradient(to right, #007bff, #00aaff);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+      transform: translateY(-3px);
+    }
+
+    /* Gaya untuk ikon media sosial */
+    .social-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 15px;
+      color: #a7a9be; /* Warna ikon default */
+      font-size: 2.5rem; /* Ukuran ikon */
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Warna spesifik untuk ikon sosial */
+    .social-links .fa-whatsapp:hover { color: #25D366; }
+    .social-links .fa-instagram:hover {
+      background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .social-links .fa-tiktok:hover { color: #69C9D0; }
+
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.95rem;
+      color: #a7a9be; /* Warna teks yang lebih terang */
+      margin-top: 60px;
+      background: #1e2a3c; /* Latar belakang footer yang cocok dengan header */
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+    }
+    .footer p {
+        margin: 0;
+    }
+
+
+    /* Media Queries untuk Responsivitas */
+    @media (max-width: 992px) {
+        header {
+            padding: 1.2rem 2rem;
+        }
+        nav ul {
+            gap: 1.5rem;
+        }
+        section {
+            padding: 60px 25px;
+            margin: 40px auto;
+        }
+        .home .content h2 {
+            font-size: 3.5rem;
+        }
+        .home .content p {
+            font-size: 1.2rem;
+        }
+        .heading {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column; /* Stack logo dan nav */
+        padding: 1rem 1rem;
+        text-align: center;
+      }
+      header .logo {
+        margin-bottom: 15px; /* Jarak antara logo dan nav */
+      }
+      nav ul {
+        flex-wrap: wrap; /* Memungkinkan item menu wrap */
+        justify-content: center;
+        gap: 1rem;
+      }
+      nav ul li a {
+        font-size: 0.95rem;
+        margin: 0 8px;
+      }
+      section {
+        padding: 50px 20px;
+        margin: 30px auto;
+      }
+      .home {
+          min-height: 70vh;
+      }
+      .home img {
+          width: 150px;
+          height: 150px;
+      }
+      .home .content h2 {
+        font-size: 2.8rem;
+      }
+      .home .content p {
+        font-size: 1.05rem;
+      }
+      .heading {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+      /* Skills, Education, Certificates default ke 1 kolom dengan grid auto-fit */
+      .skills ul, .education .box-container, .work .box-container {
+        grid-template-columns: 1fr; /* Satu kolom untuk layar kecil */
+      }
+      .skills li {
+        width: 100%; /* Ambil penuh lebar container */
+        align-items: center; /* Pusatkan konten item skill */
+        text-align: center;
+      }
+      .skills li .skill-percentage {
+          align-self: center; /* Pusatkan persentase juga */
+      }
+      /* Sembunyikan embed dan tampilkan link di mobile */
+      .pdf-viewer {
+          display: none;
+      }
+      .pdf-link-mobile {
+          display: block;
+      }
+      .certificates .certificate-image {
+        max-width: 100%;
+      }
+      .social-links a {
+        margin: 0 10px;
+        font-size: 2rem;
+      }
+      html {
+        scroll-snap-type: y mandatory;
+      }
+      section {
+        scroll-snap-align: start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header .logo {
+        font-size: 1.5rem;
+      }
+      header .logo i {
+          font-size: 1.7rem;
+      }
+      nav ul {
+        gap: 0.8rem;
+      }
+      nav ul li a {
+          padding: 3px 0;
+      }
+      .home .content h2 {
+        font-size: 2.2rem;
+      }
+      .home .content p {
+        font-size: 0.95rem;
+      }
+      .btn {
+          padding: 0.8rem 1.8rem;
+          font-size: 1rem;
+      }
+      .heading {
+        font-size: 1.8rem;
+      }
+      .skills li .skill-name {
+          font-size: 1.2rem;
+      }
+      .skills li .skill-percentage {
+          font-size: 0.9rem;
+      }
+      .education .box h3, .work .box h3 {
+          font-size: 1.4rem;
+      }
+      .education .box p, .work .box p {
+          font-size: 1rem;
+      }
+      .contact input, .contact textarea {
+          padding: 12px 15px;
+          font-size: 0.95rem;
+      }
+      .contact button {
+          padding: 12px 20px;
+          font-size: 1.05rem;
+      }
+      /* Pastikan gambar dan embed responsif di layar sangat kecil */
+      img, embed {
+        max-width: 100%;
+        height: auto; /* Penting untuk gambar agar tidak terdistorsi */
+      }
+      .certificates-gallery embed {
+        height: 40vh; /* Tinggi sedikit lebih kecil di layar sangat kecil */
+        min-height: 200px;
+      }
+      section {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo"><i class="fas fa-graduation-cap"></i> Portofolio SMA</a>
+    <nav>
+      <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="home" id="home">
+    <div class="content">
+      <img src="profile.jpg" alt="Foto Saya">
+      <h2>Hi There,<br/> I'm <span>Muhammad Nazril Ansrulloh</span></h2>
+      <p>Saya seorang pelajar SMA yang berdedikasi dan berprestasi di beberapa bidang. Ketertarikan saya yang besar terletak pada Bahasa Arab, keindahan kaligrafi, serta inovasi dalam dunia coding. Kombinasi minat ini mendorong saya untuk terus belajar dan berkarya.</p>
+      <a href="#about" class="btn"><span>Tentang Saya</span> <i class="fas fa-arrow-circle-down"></i></a>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2 class="heading"><i class="fas fa-user"></i> About <span>Me</span></h2>
+    <p>Saya adalah seorang siswa SMA yang bersemangat dan berprestasi, saat ini berusia 17 tahun dan berdomisili di Bandung, Jawa Barat. Minat saya yang mendalam terletak pada bahasa Arab, kaligrafi, dan bidang coding. Sejak duduk di bangku SMP dan mondok di salah satu pondok pesantren, saya sering meraih berbagai penghargaan, seperti juara kelas, juara umum tingkat SMP, juara umum pondok, serta prestasi di berbagai lomba seperti pidato, LKBB, pramuka, dan lainnya.
+    Bakat saya dalam bahasa Arab dan kaligrafi mulai tumbuh saat di pesantren, karena lingkungan sehari-hari yang menggunakan bahasa Arab dan Inggris. Minat terhadap kaligrafi juga mulai berkembang di sana, dan saya lanjutkan secara aktif melalui kegiatan ekstrakurikuler di MAN 1 Bandung. Dari situlah, saya sering meraih prestasi di bidang kaligrafi maupun bahasa Arab.
+    Selain itu, sejak kelas 11 saya mulai tertarik dengan dunia coding. Ketertarikan ini berkembang menjadi hobi baru yang saya tekuni secara mandiri. Saya percaya bahwa harmoni antara warisan budaya bahasa dan kemampuan teknologi modern merupakan modal penting untuk menciptakan inovasi dan kontribusi nyata di masa depan.</p>
+  </section>
+
+  <section class="skills" id="skills">
+    <h2 class="heading"><i class="fas fa-code"></i> Skills <span>& Abilities</span></h2>
+    <ul>
+      <li style="--progress-width: 75%;">
+        <span class="skill-name">Bahasa Arab</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <span class="skill-percentage">75%</span>
+      </li>
+      <li style="--progress-width: 70%;">
+        <span class="skill-name">Kaligrafi</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <span class="skill-percentage">70%</span>
+      </li>
+      <li style="--progress-width: 60%;">
+        <span class="skill-name">Pidato</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <span class="skill-percentage">60%</span>
+      </li>
+      <li style="--progress-width: 30%;">
+        <span class="skill-name">HTML & CSS</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <span class="skill-percentage">30%</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="education" id="education">
+    <h2 class="heading"><i class="fas fa-graduation-cap"></i> My <span>Education</span></h2>
+    <div class="box-container">
+      <div class="box">
+        <h3><i class="fas fa-school"></i> SDN CIPARAY 06</h3>
+        <small>2014 - 2020</small>
+      </div>
+      <div class="box">
+        <h3><i class="fas fa-school"></i> Pondok Pesantren Modern Robithoh</h3>
+        <small>2020 - 2023</small>
+      </div>
+      <div class="box">
+        <h3><i class="fas fa-school"></i> MAN 1 BANDUNG</h3>
+        <small>2023 - Sekarang</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="certificates">
+    <h2 class="heading"><i class="fas fa-certificate"></i> My <span>Achievements</span></h2>
+    <div class="box-container">
+        <div class="box">
+          <h3><i class="fas fa-medal"></i> Juara 3 Bahasa Arab Tingkat Nasional</h3>
+          <p>Berhasil meraih juara ketiga dalam kompetisi Bahasa Arab bergengsi tingkat nasional.</p>
+          <small>Diselenggarakan oleh Quartal Indonesia</small>
+        </div>
+        <div class="box">
+          <h3><i class="fas fa-medal"></i> Juara 1 Olimpiade Bahasa Arab</h3>
+          <p>Berhasil meraih juara pertama dalam ajang Olimpiade Bahasa Arab ke-7 tingkat kabupaten.</p>
+          <small>Tingkat Kabupaten</small>
+        </div>
+        <div class="box">
+          <h3><i class="fas fa-medal"></i> Juara 1 Kaligrafi se - Bandung Raya </h3>
+          <p>Berhasil meraih juara pertama dalam Lomba Kreativitas Santri, menunjukkan inovasi dan bakat di bidang Kaligrafi dalam peringatan Hari Santri.</p>
+          <small>Diselenggarakan oleh Pondok Pesantren Ash-Sholeh</small>
+        </div>
+        <div class="box">
+            <h3><i class="fas fa-medal"></i> Juara 3 Kaligrafi se - Jawa Barat</h3>
+            <p>Meraih juara ketiga dalam kompetisi kaligrafi tingkat Jawa Barat, menunjukkan keahlian seni kaligrafi.</p>
+            <small>Diselenggarakan oleh UNINUS Bandung</small>
+          </div>
+    </div>
+    <!-- Bagian untuk menampilkan gambar sertifikat asli -->
+    <div class="certificates-gallery" style="text-align: center; margin-top: 40px;">
+    <h3 style="color: #fff;">Pratinjau Sertifikat</h3>
+    <p style="color: #aaa;">Klik atau buka di tab baru jika tidak bisa ditampilkan langsung</p>
+
+    <!-- PDF 1 -->
+    <div class="pdf-item">
+        <embed src="0160054-MUHAMMAD NAZRIL ANSRULLOH-MAN 1 BANDUNG-Bahasa Arab-POINT 2023.pdf" type="application/pdf" class="pdf-viewer">
+        <div class="pdf-link-mobile">
+            <a href="0160054-MUHAMMAD NAZRIL ANSRULLOH-MAN 1 BANDUNG-Bahasa Arab-POINT 2023.pdf" target="_blank" download>
+                <i class="fas fa-file-pdf"></i> Unduh Sertifikat Bahasa Arab Tingkat Nasional
+            </a>
+        </div>
+    </div>
+
+    <!-- PDF 2 -->
+    <div class="pdf-item">
+        <embed src="Muhammad Nazril Ansrulloh MAN 1 Bandung Jawa Barat.pdf" type="application/pdf" class="pdf-viewer">
+        <div class="pdf-link-mobile">
+            <a href="Muhammad Nazril Ansrulloh MAN 1 Bandung Jawa Barat.pdf" target="_blank" download>
+                <i class="fas fa-file-pdf"></i> Unduh Sertifikat Olimpiade Bahasa Arab Kabupaten
+            </a>
+        </div>
+    </div>
+
+    <!-- PDF 3 -->
+    <div class="pdf-item">
+        <embed src="Sertifikat Penghargaan LKS.pdf" type="application/pdf" class="pdf-viewer">
+        <div class="pdf-link-mobile">
+            <a href="Sertifikat Penghargaan LKS.pdf" target="_blank" download>
+                <i class="fas fa-file-pdf"></i> Unduh Sertifikat Lomba Kreativitas Santri
+            </a>
+        </div>
+    </div>
+
+    <!-- PDF 4 -->
+    <div class="pdf-item">
+        <embed src="35.pdf" type="application/pdf" class="pdf-viewer">
+        <div class="pdf-link-mobile">
+            <a href="sertifikat-kaligrafi-nazril.pdf" target="_blank" download>
+                <i class="fas fa-file-pdf"></i> Unduh Sertifikat Lomba Kaligrafi Tingkat Jawa Barat
+            </a>
+        </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="heading"><i class="fas fa-envelope"></i> Contact <span>Me</span></h2>
+    <form>
+      <input type="text" name="nama" placeholder="Nama Lengkap" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="pesan" placeholder="Pesan Anda..." rows="6" required></textarea>
+      <button type="submit">Kirim Pesan</button>
+    </form>
+
+    <div class="social-links">
+      <p style="font-size: 1.15rem; color: #a7a9be; margin-bottom: 15px;">Hubungi saya melalui media sosial:</p>
+      <a href="https://wa.me/6282115298185" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/zrilans.27" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@el_munaz" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 All right reserved</p>
+  </footer>
+</body>
+</html>
